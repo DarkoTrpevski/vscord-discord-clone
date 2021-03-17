@@ -10,7 +10,7 @@ export class Channel extends AbstractEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => Message, message => message.ownerChannel, { onDelete: 'CASCADE', eager: true })
+  @OneToMany(() => Message, message => message.ownerChannel, { onDelete: 'CASCADE' })
   @JoinColumn()
   channelMessages: Message[];
 

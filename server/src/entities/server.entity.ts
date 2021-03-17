@@ -20,7 +20,6 @@ export class Server extends AbstractEntity {
   color: string;
 
   
-  // @ManyToOne(() => User,  user => user.servers, { eager: true })
   @ManyToOne(() => User,  user => user.servers)
   owner: User
 
@@ -28,7 +27,7 @@ export class Server extends AbstractEntity {
   @JoinColumn()
   members: User[];
 
-  @OneToMany(() => Channel, channels => channels.ownerServer, { eager: true })
+  @OneToMany(() => Channel, channels => channels.ownerServer)
   @JoinColumn()
   serverChannels: Channel[];
 
