@@ -3,6 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './rootReducer';
 // import { persistStore } from "redux-persist";
+import { localStorageMiddleware } from './middlewares';
+
+
+
 
 // Load state from local storage
 const loadState = () => {
@@ -21,7 +25,7 @@ const loadState = () => {
 const persistedState = loadState();
 
 // const initialState = {};
-const middlewares = [thunkMiddleware]
+const middlewares = [thunkMiddleware, localStorageMiddleware]
 const middlewareEnhancer = applyMiddleware(...middlewares);
 const enhancers = [middlewareEnhancer]
 const composedEnhancers = composeWithDevTools(...enhancers);
@@ -38,10 +42,10 @@ const saveState = (state) => {
 };
 
 store.subscribe(() => {
-  saveState({
-    // auth: store.getState().auth,
-    alertReducer: store.getState().alertReducer
-  });
+    saveState({
+        // auth: store.getState().auth,
+        alertReducer: store.getState().alertReducer
+    });
 });
 
 export default store;

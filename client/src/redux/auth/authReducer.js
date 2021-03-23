@@ -28,11 +28,12 @@ const authReducer = (state = initialState, action) => {
     case AUTH_SUCCESS:
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      payload && payload.jwtToken && localStorage.setItem('token', payload.jwtToken)
+      console.log('Inside LOGIN_SUCCESS, payload is: ', payload);
+      payload && payload.token && localStorage.setItem('token', payload.token)
       return {
         ...state,
         ...payload,
-        token: payload?.jwtToken,
+        token: payload?.token,
         isAuthenticated: true,
         loading: false
       }
